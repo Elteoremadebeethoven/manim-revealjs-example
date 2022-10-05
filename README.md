@@ -3,7 +3,7 @@
 ## 1. Install manim-revealjs
 
 ```
-pip instlal manim-revealjs
+pip install manim-revealjs
 ```
 
 ## 2. Clone this repo
