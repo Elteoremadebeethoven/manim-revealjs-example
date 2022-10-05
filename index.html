@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ManimReveal</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/black.css">
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="fv-background" fv-video="animations/videos/DemoScene.mp4" fv-playback-info="animations/videos/DemoScene.json"></section>
+      </div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/manim/manim.js"></script>
+    <script>
+      Reveal.initialize({
+          hash: true,
+          autoPlayMedia: false,
+          plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealManim ]
+      });
+    </script>
+  </body>
+</html>
