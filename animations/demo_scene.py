@@ -1,18 +1,24 @@
-import manim as mn
+from manim import *
 from manim_revealjs import PresentationScene, COMPLETE_LOOP
 
 
-mn.config.video_dir= "./videos"
+config.video_dir= "./videos"
 
 class DemoScene(PresentationScene):
     def construct(self):
-        # TODO find out why end_fragment has the t parameter
-        rect = mn.Rectangle(fill_color=mn.BLUE, fill_opacity=1)
-        self.play(mn.Create(rect))
+        rect = Rectangle(fill_color=RED, fill_opacity=1)
+        self.play(Create(rect))
         self.end_fragment()
 
-        self.play(rect.animate.shift(mn.UP).rotate(mn.PI / 3))
+        self.play(
+            Rotate(rect, TAU, run_time=2, rate_func=linear)
+        )
         self.end_fragment(fragment_type=COMPLETE_LOOP)
+        self.end_fragment()
 
-        self.play(rect.animate.shift(3*mn.LEFT))
+        self.play(rect.animate.shift(3*LEFT))
+        self.end_fragment()
+
+    def end_fragment_loop(self):
+        self.end_fragment(fragment_type=COMPLETE_LOOP)
         self.end_fragment()
