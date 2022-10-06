@@ -11,27 +11,18 @@ def piramyd(n):
     ]).arrange(DOWN,buff=0)
 
 class DemoScene(PresentationScene):
+
+    def end_fragment_loop(self):
+        self.end_fragment(fragment_type=COMPLETE_LOOP)
+        self.end_fragment()
+
     def construct(self):
-        title = Tex("This is a presentation made in \\sc Manim-Slides")
+        title = Tex("This is a presentation made in \\sc Manim-Slides", color=WHITE)
         title_ul = Underline(title)
         title_ul_bk = Rectangle(width=title.width,height=title.height*1.6)\
             .next_to(title_ul,DOWN,buff=0)\
             .set_style(fill_opacity=1,stroke_width=0,fill_color=BLACK)
-
-        self.play(Write(title))
-        self.wait()
-        self.play(GrowFromCenter(title_ul))
-
         vg_title = VGroup(title_ul_bk,title_ul)
-
-        self.add(vg_title)
-        self.play(vg_title.animate.shift(UP*title_ul_bk.height))
-        self.play(ShrinkToCenter(title_ul))
-        self.remove(vg_title,title)
-        self.wait()
-        
-        self.end_fragment()
-
         p = piramyd(7)
         p.set(height=config.frame_height-3)
         down_brace1 = Brace(p,DOWN)
@@ -41,14 +32,35 @@ class DemoScene(PresentationScene):
         mobs = [subsubmob for submob in p for subsubmob in submob]
         shuffle(mobs)
 
+        self.play(Write(title))
+        self.wait()
+        self.play(GrowFromCenter(title_ul))
+
+
+        self.add(vg_title)
+        self.play(vg_title.animate.shift(UP*title_ul_bk.height))
+        self.play(ShrinkToCenter(title_ul))
+        self.remove(vg_title,title)
+        self.wait()
+
+
+        self.end_fragment() # <- Pause here
+        # Start loop here
+
         self.play(LaggedStart(*list(map(Create,mobs))))
+
+        self.end_fragment_loop() # <- End loop here
+
         self.play(
                 GrowFromCenter(down_brace1),Write(down_brace1_label),
                 GrowFromCenter(left_brace1),Write(left_brace2_label),
         )
+
         self.wait(0.5)
         self.play(p.animate.arrange(DOWN,buff=0,aligned_edge=LEFT))
-        self.wait(0.5)
+
+        self.end_fragment()
+
         p_ = p.copy()
         self.add(p_)
         self.play(
