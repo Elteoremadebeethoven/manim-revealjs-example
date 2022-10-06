@@ -17,7 +17,7 @@ class DemoScene(PresentationScene):
         self.end_fragment()
 
     def construct(self):
-        title = Tex("This is a presentation made in \\sc Manim-Slides", color=WHITE)
+        title = Tex("This is a presentation made in \\sc Manim-RevealJS", color=WHITE)
         title_ul = Underline(title)
         title_ul_bk = Rectangle(width=title.width,height=title.height*1.6)\
             .next_to(title_ul,DOWN,buff=0)\
