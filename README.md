@@ -14,12 +14,12 @@ git clone https://github.com/Elteoremadebeethoven/manim-revealjs-example.git sli
 
 ## 3. Go to the `slides_example` file and run a server
 
-**I recommend using http-server with NodeJS.**
+**I recommend to use GOLANG.**
 
 ```
 cd slides_example
 
-npx http-server
+go run main.go -p 8080
 ```
 
 ## 4. Open a browser and go to localhost:8080
